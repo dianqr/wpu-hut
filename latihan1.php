@@ -1,4 +1,10 @@
+<?php
+$data = file_get_contents('data/pizza.json');
+$menu = json_decode($data,true);
 
+$menu = $menu ["menu"];
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,7 +34,30 @@
   </div>
 </nav>
 
+<div class="container">
+    <div class ="row mt-3">
+        <div class ="col">
+          <h1>All Menu</h1>
+        </div>
+    </div>
 
+    <div class="row">
+        <?php foreach($menu as $row) :?>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="img/menu/<?=$row["gambar"];?>" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"><?=$row["nama"];?> 
+                    </h5> 
+                    <p class="card-text"><?= $row["deskripsi"];?></p>
+                        <h5 class="card-title">Rp. <?=$row["harga"];?> </h5>
+                    <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
